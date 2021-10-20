@@ -1,0 +1,101 @@
+# For/of
+Iterar arrays e objetos. Objetos iteráveis são objetos ou uma estrutura de dados que permite acessar o seu conteúdo com um for . O for/of nos permite criar loops em objetos iteráveis como strings, arrays, entre outros.
+    let numeros = [1,2,3,4,5];
+    for(let numero of numeros) {
+      console.log(numero);
+    }
+
+    // resultado: 
+    //1
+    //2
+    //3
+    //4
+    //5
+
+O laço for/of permite iterar os valores das propriedades, nos retornando os números dentro do array numeros
+
+    let word = 'Hello';
+    for (let letter of word) {
+      console.log(letter);
+    }
+    // resultado:
+    // "H"
+    // "e"
+    // "l"
+    // "l"
+    // "o"
+
+Por fim, com o for/of , nós conseguimos somar um valor a cada elemento do array e retorná-los da seguinte forma:
+
+    let arrOfNumbers = [10, 20, 30];
+    for (let sum of arrOfNumbers) {
+      sum += 1;
+      console.log(sum);
+    }
+    // 11
+    // 21
+    // 31
+É importante ressaltar que o for/of não irá alterar o array, e sim trazer os valores de dentro, e no caso, adicionando 1 à soma.
+    console.log(arrOfNumbers);
+    // Resultado: [10, 20, 30]
+
+
+##########
+
+
+# For-in
+Estrutura: (Pode trabalhar tanto com objetos quanto arrays)
+    let pizzas = {
+      sabor: "Palmito",
+      preco: 39.90,
+      bordaCatupiry: true
+    }
+
+    for (let key in pizzas) {
+      console.log(key);
+    }
+
+Vai aparecer as propriedades
+
+    for (let key in pizzas) {
+      console.log(pizzas);
+    }
+
+Vai mostrar 3 vezes(porque tem 3 chaves dentro do objeto) o objeto completo
+
+    for (let key in pizzas) {
+      console.log(pizzas.nomeDaPropriedade);
+      console.log(pizzas['nomeDaPropriedade']);
+    }
+
+Vai mostrar o valor da propriedade 3 vezes(porque tem 3 chaves dentro do objeto)
+
+    for (let key in pizzas) {
+      console.log(pizzas[key]);
+    }
+
+Vai passar por todas as propriedades pegando o valor delas
+
+
+##########
+
+
+# Diferença entra For/in e For/of
+For/in percorre as propriedades dos objetos que forem enumeráveis com base na ordem de inserção, e não nos valores das propriedades. Por exemplo, se tivermos um array com três strings dentro:
+    let food = ['hamburguer', 'bife', 'acarajé'];
+
+As propriedades dos elementos do array serão os índices de cada posição, começando por zero. É por isso que os números retornados pelo console.log são 0, 1 e 2: as propriedades que correspondem ao índice de cada posição do array.
+    for (let position in food) {
+      console.log(position);
+    };
+resultado: 0, 1, 2;
+
+Se percorrermos um objeto, também teremos o mesmo resultado. O For/in irá percorrer a propriedade declarada, e não o seu valor em si.
+
+Já o For/of percorre os elementos dos objetos iteráveis através dos seus respectivos valores, e não dos índices como o For/in . Vejamos o exemplo:
+    let food = ['hamburguer', 'bife', 'acarajé'];
+
+    for (let value of food) {
+      console.log(value);
+    };
+resultado: hamburguer, bife, acarajé;

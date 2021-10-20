@@ -1,0 +1,243 @@
+# DIA 3
+
+Kernel		Interação entre Hardware e Software
+Shell		Interface  /  Ler a linha de comando, interpretar o significado, executar o comando e devolver o resultado ao usuário
+Unix		Processo: tudo que faz no Unix  /  Arquivos: Tudo é um arquivo
+
+
+# HIERARQUIA
+/		Representa o diretorio RAIZ
+BOOT		Arquivos de configuração para inicialização
+BIN		Aplicativos binários
+DEV		Arquivos do dispositivo
+ETC		Scripts de inicialização
+HOME		Diretório HOME para diferentes usuários
+PROC		Diretório dinâmico especial que mantem informações sobre o estado do sistema, incluindo os processos recentemente executados
+ROOT		Diretório HOME do usuário ROOT
+SBIN		Binários de sistema importante
+TMP		Arquivos temporários
+USR		Arquivos e aplicativos que são na maioria das vezes disponíveis ao acesso de todos os usuários
+VAR		Arquivos variáveis como logs e banco de dados
+
+
+# TERMINAL (o hífen(-) após o comando é uma variação)
+ls					Lista arquivos e diretórios
+ls -a					Lista todos arquivos e diretórios (inclusive ocultos)
+mkdir					Criar um diretório
+cd diretório				Muda para o diretório nomeado
+cd 					Muda para o diretório inicial
+cd ~					Altera para o diretório inicial
+cd /					Altera para o diretório raiz
+cd .					Referencia o próprio diretório
+cd ..					Retornar ao diretório pai
+pwd					Mostra o caminho do diretório atual
+touch					Criar arquivo
+cp arquivo1 arquivo2			Copiar arquivo
+mv arquivo1 arquivo2			Move ou renomeia arquivo1 para arquivo2
+rm arquivo				Remove um arquivo
+rm dir diretório			Remove um diretório vazio
+rm -rf diretório			Remove um diretório com tudo dentro ('r' de recursion && 'f' de force)
+rm *.extensao				Remove todos os arquivos .extensao do diretório
+cat					Visualizar/Exibir o conteúdo do arquivo
+less					Exibe um arquivo, uma página por vez
+head					Exibe as primeiras linhas de um arquivo
+head -n 5  ou  head -5			Exibe os 5 primeiros valores
+tail					Exibe as últimas linhas de um arquivo
+tail -5					Exibe as cinco últimas linhas
+grep 'palavras-chave' arquivo		Procura por palavras-chave no arquivo
+grep -i					Busca o valor ignorando o case sensitive
+grep -i 'palavras-chave'		Busca todas as palavras-chave
+grep -iv 'palavras-chave'		Busca todos os valores que não possuem a palavra-chave
+grep -in 'palavras-chave'		Busca as palavras-chaves e mostra a linha que as encontrou
+grep -ic 'palavras-chave'		Mostra a quantidade de vezes que a condição palavra-chave é executada
+wc arquivo				Conta o número de linhas / palavras / caracteres no arquivo, 
+wc -l arquivo				Conta o número de linhas no arquivo
+wc -w arquivo				Conta o número de palavras no arquivo
+wc -c  ou  wc -m arquivo		Conta o número de caracteres no arquivo
+*					Corresponde a qualquer número de caracteres
+?					Corresponde a um caracter
+man comando				Lê a página do manuial online do comando informado
+whatis comando				Breve descrição do comando informado
+apropos 'palavra-chave'			Corresponde a comandos com palavras-chave em suas páginas de manual
+
+
+##########
+
+
+# Dia 4
+
+# INPUTS
+>		Atribuir valores pra um determinado arquivo (redireciona a saída padrão para um arquivo, sendo assim caso haja algum conteúdo no arquivo, ele será substituído)
+>>		Adicionar mais valores pra um determinado arquivo (anexa a saída padrão a um arquivo. Sendo assim, ele adiciona o que for digitado ao final do arquivo em questão)
+<		Redireciona a entrada padrão de um arquivo
+|		Analiza a saída do comando1 para a entrada do comando2, dessa forma conseguimos realizar comandos de forma sucessiva
+sort		Ordena dados
+who		Lista os usuários atualmente logados
+ls -lag		Lista direitos de acesso para todos os arquvos
+cat		Usar apenas o 'cat' serve pra receber valores como input(entrada de dados), pra fechar é (ctrl+D)
+
+# Fazer um comando cat e armazenar valores
+	cat > cores.txt
+	amarelo
+	vermelho
+	verde
+	azul
+
+# Adicionar mais valores
+	cat >> cores.txt
+	marrom
+	preto
+	laranja
+
+# Juntar valores de dois arquivos diferentes em um terceiro arquivo
+	cat > frutas.txt
+	morango
+	laranja
+	banana
+	maca
+	
+	cat cores.txt frutas.txt > tudo.txt
+
+# Alterar valores na parte de visualizacao(output)
+	sort < cores.txt
+	
+# Ordenar e mandar pra outro arquivo
+	sort < cores.txt > coresOrdenadas.txt
+
+# O resultado(o output) do 'who' ele vai ser enviado para o comando 'sort'
+	who | sort
+
+# outro exemplo
+	grep V -i cores.txt | sort
+
+# Cinco ultimos comando do historico
+	history | tail -n 5
+
+# Cinco ultimos e adicionar em um arquivo
+	history | tail -5 >> historico.txt
+		ou
+	history | tail -5 | cat > historico.txt
+
+# outro exemplo
+	cat > nomes.txt
+	cat nomes.txt cores.txt | sort > newArquivo.txt
+
+
+# TIPOS DE ACESSOS/PERMISSOES
+
+  Permissões | Links  | Proprietário | Grupo | Tamanho | Data e Hora   | Nome
+  -----------|--------|--------------|-------|---------|---------------|---------
+  drwxr-xr-x | 2      | root         | root  | 4096    | Out 19 09:10  | composer/
+
+Permissões		É possível verificar o tipo do item e nível de permissão para Leitura, Escrita e Execução de item ou diretório;
+Links			Número de ligações que o item possui, no caso do diretório, número de subdiretórios que possui;
+Proprietário		Quem é a pessoa dona, quem criou. É o diretório padrão da pessoa usuária, o home;
+Grupo			Grupo ao qual pertence o item ou diretório. Utilizado para dar permissões à outras pessoas;
+Tamanho			Tamanho em Bytes;
+Data e Hora		Momento em que foi criado ou última modificação;
+Nome			Nome do item ou diretório;
+
+R	(Read)Leitura permitida do arquivo ou diretório
+W	(Write)Editar um arquivo ou modificar o conteúdo de um diretório
+X	(Execute)Permite Executar um arquivo ou acessar um diretório pelo comando 'cd'
+-	No início da sequência indica um arquivo comum
+D	No início da sequência indica um diretório
+
+	cat > arquivo.txt
+	Trybe
+	ls -l
+-rw-rw-r--
+	
+- ou D (Tipo do Objeto)   RW- (usuario)   RW- (grupo)   R-- (Outros usuários)
+- RWX RWX RWX
+
+
+chmod		Alterar permissoes do arquivo
+chmod u		Alterar apenas para o usuario que estou utilizando
+chmod u-	Retirar permissao
+chmod u+	Adicionar permissao
+chmod u=	Deixar igual a condicao que queremos
+chmod g		Para o grupo todo
+chmod o		Para outros usuarios
+chmod a		Para todos
+
+
+-rw-rw-r--
+
+	chmod u-rw arquivo.txt
+	ls -l
+----rw-r--
+
+	cat arquivo.txt
+	(Permission denied)
+	
+	chmod u+rw arquivo.txt
+	ls -l
+-rw-rw-r--
+	
+	chmod a-w arquivo.txt
+	ls -l
+-r--r--r--
+
+	chmod a+x arquivo.txt
+-r-xr-xr-x
+
+
+# (Não precisa focar)
+Você aprendeu como alterar as permissões no modo literal (caracteres), mas também é possível usar o modo octal. Para compreendermos esta outra forma, precisamos entender que eles são administrados por meio de valores como descrito abaixo:
+Leitura r - 4
+Escrita w - 2
+Execução x - 1
+
+Esses valores são permissões com base em bits de ligados = 1 e desligados = 0,
+rwx = 111 ( 7 | Acesso Total )
+r-- = 100 ( 4 | Somente Leitura )
+-w- = 010 ( 2 | Somente Escrita )
+--x = 001 ( 1 | Somente Execução )
+rw- = 110 ( 6 | Somente Leitura e Escrita )
+r-x = 101 ( 5 | Somente Leitura e Execução )
+-wx = 011 ( 3 | Somente Escrita e Execução )
+--- = 000 ( 0 | Todos Acessos Negados )
+
+Portanto, cada vez que você liga a chave de leitura, atribui-se o valor para esta chave somando-se com as demais chaves de administração de escrita e execução caso você também deseje ligá-las. A sintaxe para realizar esta alteração continua a mesma que no modo literal, sendo chmod 766 [arquivo ou diretório] . Cada número corresponde aos grupos de pessoas usuárias, de grupo e de outras pessoas usuárias.
+
+
+ps		Lista de processos sendo executado naquele exato momendo (os processos podem estar em: Execucao, background ou suspensos)
+sleep 5		Para(suspende) o terminal durando um determinado tempo. Para pausar(suspender) é (ctrl+Z). Para continuar após estar suspenso em background é 'bg', e pra voltar, pra que ele continue 'fg %1' (% mais o numero da lista do processo ou passar o PID 'fg 9980'). Para encerrar um processo (Ctrl+C).
+sleep 10 &	Deixar o processo em background. Para encerrar um processo em background 'kill %1' ou 'kill PID' . Para forçar o KILL 'kill -9 PID'
+jobs		Exibir todos processos executados
+find 		É um comando para pesquisar em diretórios por arquivos ou outras pastas, de acordo com os parâmetros passados a ele. Esses parâmetros podem ser 'name', 'date', 'size' e 'type'. Caso nenhum atributo seja passado, ele pesquisará tudo que estiver dentro do diretório atual.
+history		É um comando que mostra o histórico de comandos que você executou no terminal. A quantidade ou o tamanho desse "histórico" podem ser configurados para um número arbitrário de comandos ou para ver todo o histórico.
+echo		É um comando utilizado em scripts ou no terminal para exibir mensagens na tela ou em um arquivo.
+
+
+# Para listar todos os arquivos que terminam em .txt
+	find . -name "*.txt"
+
+# Para localizar todos os diretórios
+	find . -type d
+
+# Para localizar todos os arquivos(files)
+	find . -type f
+
+# Localizar tanto arquivos quanto diretórios que comecem por algum trecho
+	find ./teste -name exemplo*
+
+# Localizar somente arquivos que comecem por algum trecho
+	find ./teste -type f -name "exemplo*"
+
+# Localizar somente diretórios que comecem por algum trecho
+	find ./teste -type d -name "exemplo*"
+
+# Mostra o histórico de comandos
+	history
+	
+# Pegar os últimos 10 comandos
+	history | tail
+
+# Usar o echo
+	echo "Este é um teste"
+
+# Pode ser usado para colocar textos dentro de arquivos.
+	echo "Este é mais um teste" > testeEcho.txt
+	cat testeEcho.txt

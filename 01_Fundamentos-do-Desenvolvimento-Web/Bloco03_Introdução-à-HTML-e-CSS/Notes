@@ -1,0 +1,22 @@
+# Elementos block
+div, section, ui, li, header, p, etc...
+- Ocupam 100% da largura do elemento página
+- Ocupam a própria linha,, sendo posicionados abaixo do elemento anterior
+- A altura padrão é definida pelo tamanho do conteúdo
+- É possivel alterar as propriedades de tamanho e largura
+- É possivel alterar todas as propriedades de margem
+
+# Elementos inline
+a, span, b, i, etc..
+- Ocupam a largura do próprio conteúdo
+- Dois ou mais elementos inline em sequência, são posicionados lado a lado
+- Não é possível alterar as propriedades de altura e largura
+- Somente é possível alterar as margens horizontais
+- Ao aplicar float, automaticamente se transformam em elementos block
+- Se comporta como um texto
+
+# Elementos inline-block
+- Ocupam a largura do próprio conteúdo
+- Dois ou mais elementos inline-block em sequência, são posicionados lado a lado
+- É possivel alterar as propriedades de tamanho e largura
+- É possivel alterar todas as propriedades de margem
